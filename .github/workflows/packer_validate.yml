@@ -15,3 +15,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: ${{ github.ref }}
+    
+    - name: Run tests
+      run: packer validate
