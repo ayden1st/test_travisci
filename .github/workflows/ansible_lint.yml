@@ -25,10 +25,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install ansible ansible-lint
+        pip install ansible-lint
 
     - name: Lint playbook
       run: |
         cd ansible
-        ansible-playbook --syntax-check playbooks/*
-        ansible-lint playbooks/*
+        ansible-lint playbooks/* -vvv
