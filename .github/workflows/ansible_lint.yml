@@ -30,4 +30,5 @@ jobs:
     - name: Lint playbook
       run: |
         cd ansible
+        mv vault.key.example vault.key
         ansible-lint playbooks/* -vvv
