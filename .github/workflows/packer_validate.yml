@@ -16,6 +16,6 @@ jobs:
     
     - name: Run tests
       run: |
-      pwd
-      ls -la 
-      packer validate
+        pwd
+        ls -la 
+        packer validate
