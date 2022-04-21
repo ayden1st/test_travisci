@@ -20,9 +20,13 @@ jobs:
     - name: Run terraform validate
       run: |
         cd terraform/stage
-        terraform init
+        mv terraform.tfvars.example terraform.tfvars
+        mv backend.conf.example backend.conf
+        terraform init -backend-config=./backend.conf
         cd ../prod
-        terraform init
+        mv terraform.tfvars.example terraform.tfvars
+        mv backend.conf.example backend.conf
+        terraform init -backend-config=./backend.conf
         cd ../..
-        terraform -chdir=terraform/stage validate
+        terraform -chdir=terraform/stage validate 
         terraform -chdir=terraform/prod validate 
