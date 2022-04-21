@@ -42,6 +42,6 @@ module "db" {
   source           = "../modules/db"
   public_key_path  = var.public_key_path
   private_key_path = var.private_key_path
-  db_disk_image    = "${data.yandex_compute_image.db_image.id}"
+  db_disk_image    = data.yandex_compute_image.db_image.id
   subnet_id        = module.vpc.subnet_id
 }
