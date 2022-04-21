@@ -20,7 +20,7 @@ jobs:
       with:
         ref: ${{ github.ref }}
     
-    - name: Run tests
+    - name: Run packer validate
       run: |
         mv packer/variables.json.example packer/variables.json
         packer validate -var-file=packer/variables.json packer/app.json
