@@ -29,4 +29,18 @@ jobs:
         terraform init
         cd ../..
         terraform -chdir=terraform/stage validate 
-        terraform -chdir=terraform/prod validate 
+        terraform -chdir=terraform/prod validate
+    
+    - uses: terraform-linters/setup-tflint@v1
+      name: Setup TFLint
+      with:
+        tflint_version: v0.29.0
+
+    - name: Show version
+      run: tflint --version
+
+    - name: Init TFLint
+      run: tflint --init
+
+    - name: Run TFLint
+      run: tflint -f compact
