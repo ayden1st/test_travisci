@@ -2,7 +2,13 @@ name: Run packer validate
 
 on:
   push:
+    branches:
+      - main
+      - master
   pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
   test:
@@ -16,6 +22,6 @@ jobs:
     
     - name: Run tests
       run: |
-      pwd
-      ls -la 
-      packer validate
+        mv packer/variables.json.example packer/variables.json
+        packer validate -var-file=packer/variables.json packer/app.json
+        packer validate -var-file=packer/variables.json packer/db.json
