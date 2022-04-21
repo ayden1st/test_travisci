@@ -19,5 +19,5 @@ jobs:
     
     - name: Run terraform validate
       run: |
-        terraform -h
-        tflint -h
+        terraform validate -chdir=terraform/stage
+        terraform validate -chdir=terraform/prod
