@@ -41,5 +41,5 @@ jobs:
 
     - name: Run TFLint
       run: |
-        tflint -f compact terraform/stage
-        tflint -f compact terraform/prod
+        tflint terraform/stage
+        tflint terraform/prod
