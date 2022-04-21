@@ -17,6 +17,7 @@ jobs:
     - name: Run tests
       run: |
         cd packer/
+        mv variables.json.example variables.json
         pwd
         ls -la 
         packer validate app.json
