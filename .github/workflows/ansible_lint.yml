@@ -1,0 +1,23 @@
+name: Run ansible lint
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+    
+    - name: Run ansible-lint
+        uses: ansible-community/ansible-lint-action@main
+        with:
+          path: "ansible/playbooks/"
