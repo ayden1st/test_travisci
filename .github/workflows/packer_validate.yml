@@ -16,6 +16,7 @@ jobs:
     
     - name: Run tests
       run: |
+        cd packer/
         pwd
         ls -la 
-        packer validate
+        packer validate app.json
