@@ -19,5 +19,5 @@ jobs:
     
     - name: Run terraform validate
       run: |
-        terraform validate -chdir=terraform/stage
-        terraform validate -chdir=terraform/prod
+        terraform -chdir=terraform/stage validate
+        terraform -chdir=terraform/prod validate 
