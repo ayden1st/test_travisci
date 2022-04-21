@@ -1,0 +1,48 @@
+name: Run terraform validate
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+    
+    - name: Run terraform validate
+      run: |
+        cd terraform/stage
+        mv terraform.tfvars.example terraform.tfvars
+        rm backend.tf
+        terraform init
+        cd ../prod
+        mv terraform.tfvars.example terraform.tfvars
+        rm backend.tf
+        terraform init
+        cd ../..
+        terraform -chdir=terraform/stage validate 
+        terraform -chdir=terraform/prod validate
+    
+    - uses: terraform-linters/setup-tflint@v1
+      name: Setup TFLint
+      with:
+        tflint_version: latest
+
+    - name: Init TFLint
+      run: tflint --init
+
+    - name: Run TFLint
+      run: |
+        tflint terraform/stage
+        tflint terraform/prod
