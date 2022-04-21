@@ -20,4 +20,4 @@ jobs:
         mv variables.json.example variables.json
         pwd
         ls -la 
-        packer validate app.json
+        packer validate -var-file=variables.json app.json
